@@ -36,6 +36,13 @@ export default function MainHeader() {
             </Link>
           </li>
         )}
+        {role?.value === "PersonalTrainer" && token?.value && (
+          <li className={styles.navItem}>
+            <Link className={styles.navLink} href={"/clients"}>
+              Clients
+            </Link>
+          </li>
+        )}
         <li className={styles.navItem}>
           <Link className={styles.navLink} href={"/login"}>
             {!token?.value ? "Login" : "Logout"}
