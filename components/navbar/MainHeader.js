@@ -22,7 +22,7 @@ export default function MainHeader() {
           </Link>
         </li>
 
-        {token?.value && (
+        {token?.value && role?.value !== "Client" && (
           <li className={styles.navItem}>
             <Link className={styles.navLink} href="/dashboard">
               Dashboard

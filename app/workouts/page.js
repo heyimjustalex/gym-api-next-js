@@ -14,7 +14,7 @@ export default async function WorkoutsPage() {
       if (result) {
         return (
           <Layout>
-            <WorkoutList workouts={result}></WorkoutList>;
+            <WorkoutList workouts={result}></WorkoutList>
           </Layout>
         );
       }
