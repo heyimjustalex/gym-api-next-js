@@ -2,19 +2,23 @@ import React from "react";
 import Link from "next/link";
 import WorkoutItem from "./WorkoutItem";
 import styles from "./WorkoutList.module.css";
-export default function WorkoutList(props) {
-  const { workouts } = props.workouts;
+import Layout from "../ui/Layout";
 
+export default function WorkoutList(props) {
   return (
-    <div className={styles.listContainer}>
-      {workouts.map((workout) => (
-        <Link
-          key={workout.workoutProgramId}
-          href={`/workouts/${workout.workoutProgramId}`}
-        >
-          <WorkoutItem workout={workout} />
-        </Link>
-      ))}
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        {props.workouts.map((workout) => (
+          <Link
+            key={workout.workoutProgramId}
+            href={`/workouts/${workout.workoutProgramId}`}
+          >
+            <div className={styles["container-item"]}>
+              <WorkoutItem workout={workout} />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </Layout>
   );
 }

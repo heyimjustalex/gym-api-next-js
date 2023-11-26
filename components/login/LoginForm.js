@@ -9,8 +9,10 @@ export default function LoginForm(props) {
   const passwordRef = useRef();
 
   useEffect(() => {
-    emailRef.current.value = "boss@fitness.moon";
-    passwordRef.current.value = "asdfQWER";
+    // emailRef.current.value = "boss@fitness.moon";
+    // passwordRef.current.value = "asdfQWER";
+    emailRef.current.value = "m@fit";
+    passwordRef.current.value = "aQ";
   }, []);
 
   const handleSubmit = (e) => {

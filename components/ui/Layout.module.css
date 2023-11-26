@@ -1,4 +1,4 @@
-.container {
+.container2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,4 +7,16 @@
   flex-direction: column;
   text-align: center;
   flex-wrap: nowrap;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  text-align: center;
+  gap: 16px;
+  padding-top: 60px; /* Adjust this value to create space below the navbar */
 }

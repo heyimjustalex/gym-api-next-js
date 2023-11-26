@@ -21,12 +21,15 @@ export default function MainHeader() {
             Home
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link className={styles.navLink} href="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        {role?.value !== "Manager" && (
+
+        {token?.value && (
+          <li className={styles.navItem}>
+            <Link className={styles.navLink} href="/dashboard">
+              Dashboard
+            </Link>
+          </li>
+        )}
+        {role?.value !== "Manager" && token?.value && (
           <li className={styles.navItem}>
             <Link className={styles.navLink} href="/workouts">
               Workouts

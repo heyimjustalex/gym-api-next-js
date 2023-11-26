@@ -67,7 +67,7 @@ export default function LoginPage() {
   } else if (session.status === "authenticated") {
     return (
       <Layout>
-        <SuccessMessage message={"You are logged in"} />
+        {/* <SuccessMessage message={"You are logged in"} /> */}
         <Button onClick={handleLogout} title={"Sign out!"} />
       </Layout>
     );

@@ -70,9 +70,9 @@ const options = {
 
     session({ session, token }) {
       //server side
-      cookies().set("token", token.token);
-      cookies().set("role", token.role);
-      cookies().set("userId", token.userId);
+      cookies().set("token", token.token, { sameSite: "None", secure: true });
+      cookies().set("role", token.role, { sameSite: "None", secure: true });
+      cookies().set("userId", token.userId, { sameSite: "None", secure: true });
 
       //client side
       session.token = token.token;

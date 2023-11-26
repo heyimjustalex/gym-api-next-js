@@ -26,22 +26,32 @@ export default function DashboardPage(props) {
   }
 
   if (session.status == "authenticated") {
-    return (
-      <Layout>
-        <h1 style={{ textAlign: "center" }}>Manager Dashboard</h1>
-        <br />
-        {statusTrainerReq !== "pending" && (
-          <TrainerForm onSubmit={onSubmitTrainer} />
-        )}
-        {statusTrainerReq == "pending" && <LoadingRing />}
-        {statusTrainerReq == "completed" && !errorTrainerReq && (
-          <SuccessMessage message={"Trainer added!"} />
-        )}
-        {statusTrainerReq == "completed" && errorTrainerReq && (
-          <ErrorMessage message={errorTrainerReq} />
-        )}
-      </Layout>
-    );
+    const role = session.data?.role;
+
+    <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>;
+    if (role == "Manager") {
+      return (
+        <Layout>
+          <br />
+          {statusTrainerReq !== "pending" && (
+            <TrainerForm onSubmit={onSubmitTrainer} />
+          )}
+          {statusTrainerReq == "pending" && <LoadingRing />}
+          {statusTrainerReq == "completed" && !errorTrainerReq && (
+            <SuccessMessage message={"Trainer added!"} />
+          )}
+          {statusTrainerReq == "completed" && errorTrainerReq && (
+            <ErrorMessage message={errorTrainerReq} />
+          )}
+        </Layout>
+      );
+    } else if (role == "PersonalTrainer") {
+      return (
+        <Layout>
+          <h1 style={{ textAlign: "center" }}>this dashboard is not ready</h1>
+        </Layout>
+      );
+    }
   } else if (session.status === "unauthenticated") {
     return (
       <Layout>
