@@ -1,14 +1,16 @@
 import Link from "next/link";
 import styles from "./MainHeader.module.css";
+import { cookies } from "next/headers";
 
 export default function MainHeader() {
-  // Check if the component is rendered on the server or the client
+  const token = cookies().get("token");
+  const role = cookies().get("role");
+
   if (typeof window !== "undefined") {
-    // Client-side rendering logic
-    console.log("Client side");
+    console.log("Client side Navbar");
   } else {
-    // Server-side rendering logic
-    console.log("Server side");
+    console.log("Server side navbar");
+    console.log("ROLE", role);
   }
 
   return (
@@ -24,14 +26,16 @@ export default function MainHeader() {
             Dashboard
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link className={styles.navLink} href="/workouts">
-            Workouts
-          </Link>
-        </li>
+        {role?.value !== "Manager" && (
+          <li className={styles.navItem}>
+            <Link className={styles.navLink} href="/workouts">
+              Workouts
+            </Link>
+          </li>
+        )}
         <li className={styles.navItem}>
           <Link className={styles.navLink} href={"/login"}>
-            Login/Logout
+            {!token?.value ? "Login" : "Logout"}
           </Link>
         </li>
       </ul>

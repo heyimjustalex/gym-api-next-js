@@ -25,6 +25,7 @@ export default function LoginPage() {
       redirect: false,
     });
     if (res?.status == 200) {
+      router.refresh();
       router.replace("/dashboard");
     } else {
       setError("Login failed. Please check your email and password.");
@@ -33,13 +34,19 @@ export default function LoginPage() {
   }
 
   async function handleLogout() {
-    console.log("trying logout");
     await signOut({
       callbackUrl: "/",
       redirect: false,
     });
-    // Note: The signOut function will redirect, so this console.log might not be reached
-    console.log("Signed out");
+
+    //delete all client side
+
+    document.cookie.split(";").forEach(function (c) {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    router.refresh();
   }
 
   if (session.status == "unauthenticated") {

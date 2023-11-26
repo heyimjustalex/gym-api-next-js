@@ -2,7 +2,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 
 import { jwtDecode } from "jwt-decode";
-
+import { cookies, setCookie } from "next/headers";
 import { log } from "console";
 const options = {
   secret: process.env.AUTH_SECRET,
@@ -59,38 +59,26 @@ const options = {
 
   callbacks: {
     async jwt({ token, user, account, isNewUser }) {
-      console.log(user);
-      // This user return by provider {} as you mentioned above MY CONTENT {token:}
       if (user) {
         if (user.jwt) {
-          log("JWT DECODE", user.jwt);
           const { Name, Role, UserId } = jwtDecode(user.jwt);
-          console.log("ROLE", Role);
           token = { token: user.jwt, role: Role, userId: UserId };
-
-          // userId = UserId;
-
-          log(user.jwt);
         }
       }
       return token;
     },
 
-    // session: {
-    //   strategy: "jwt",
-    // },
-
-    // That token store in session
     session({ session, token }) {
-      console.log("SESSION");
-      //this token return above jwt()
-      //   session.accessToken = token.accessToken;
-      console.log("TOKEN TOKEN", token.token);
+      //server side
+      cookies().set("token", token.token);
+      cookies().set("role", token.role);
+      cookies().set("userId", token.userId);
+
+      //client side
       session.token = token.token;
       session.role = token.role;
       session.userId = token.userId;
-      // if you want to add user details info
-      //   session.user = { name: "name", email: "email" }; //this user info get via API call or decode token. Anything you want you can add
+
       return session;
     },
     pages: {

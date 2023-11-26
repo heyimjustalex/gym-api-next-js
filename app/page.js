@@ -25,7 +25,6 @@ export default async function HomePage() {
     const { q: quote, a: author } = result?.[0] || {};
     outputQuote = quote;
     outputAuthor = author;
-    console.log(outputQuote);
   }
 
   return (
