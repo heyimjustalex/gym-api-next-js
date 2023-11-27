@@ -14,7 +14,6 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
   const router = useRouter();
   const session = useSession();
-  const role = session.data?.role;
 
   async function handleLogin(enteredEmail, enteredPassword) {
     setError(null);

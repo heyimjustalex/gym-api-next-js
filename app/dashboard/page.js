@@ -4,13 +4,13 @@ import TrainerForm from "@/components/forms/TrainerForm";
 import Layout from "@/components/ui/Layout";
 import { useSession } from "next-auth/react";
 import { addTrainer } from "@/lib/api";
-
 import useHttp from "@/hooks/use-http";
 import LoadingRing from "@/components/ui/LoadingRing";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import SuccessMessage from "@/components/ui/SuccessMessage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import DashboardOption from "@/components/dashboard/DashboardOption";
 
 export default function DashboardPage(props) {
   const session = useSession();
@@ -42,11 +42,11 @@ export default function DashboardPage(props) {
   if (session.status == "authenticated") {
     const role = session.data?.role;
 
-    <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>;
     if (role == "Manager") {
       return (
         <Layout>
-          <br />
+          <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>;
+          <br /> <br />
           {statusTrainerReq !== "pending" && (
             <TrainerForm onSubmit={onSubmitTrainer} />
           )}
@@ -62,7 +62,28 @@ export default function DashboardPage(props) {
     } else if (role == "PersonalTrainer") {
       return (
         <Layout>
-          <h1 style={{ textAlign: "center" }}>this dashboard is not ready</h1>
+          <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>
+          <br /> <br />
+          <div
+            style={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
+            <DashboardOption
+              href="/workouts/create"
+              title="Create Workout"
+            ></DashboardOption>
+            <DashboardOption
+              href="/clients/add"
+              title="Add Client"
+            ></DashboardOption>
+            <DashboardOption
+              href="/exercise/add"
+              title="Add Exercise"
+            ></DashboardOption>
+          </div>
         </Layout>
       );
     } else if (role == "Client") {
