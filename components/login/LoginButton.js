@@ -20,6 +20,7 @@ export default function LoginButton(props) {
     });
 
     router.refresh();
+    router.replace("/");
   }
 
   return (
