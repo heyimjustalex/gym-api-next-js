@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./MainHeader.module.css";
 import { cookies } from "next/headers";
+import LoginButton from "../login/LoginButton";
 
 export default function MainHeader() {
   const token = cookies().get("token");
@@ -44,8 +45,11 @@ export default function MainHeader() {
           </li>
         )}
         <li className={styles.navItem}>
-          <Link className={styles.navLink} href={"/login"}>
-            {!token?.value ? "Login" : "Logout"}
+          <Link className={styles.navLink} href={token?.value ? "" : "/login"}>
+            <LoginButton
+              title={token?.value ? "Logout" : "Login"}
+              isLogout={token?.value ? true : false}
+            />
           </Link>
         </li>
       </ul>

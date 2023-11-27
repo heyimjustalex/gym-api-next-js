@@ -14,6 +14,7 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
   const router = useRouter();
   const session = useSession();
+  const role = session.data?.role;
 
   async function handleLogin(enteredEmail, enteredPassword) {
     setError(null);
@@ -33,22 +34,6 @@ export default function LoginPage() {
     setIsLoading(false);
   }
 
-  async function handleLogout() {
-    await signOut({
-      callbackUrl: "/",
-      redirect: false,
-    });
-
-    //delete all client side
-
-    document.cookie.split(";").forEach(function (c) {
-      document.cookie = c
-        .replace(/^ +/, "")
-        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
-    router.refresh();
-  }
-
   if (session.status == "unauthenticated") {
     return (
       <Layout>
@@ -65,12 +50,7 @@ export default function LoginPage() {
       </Layout>
     );
   } else if (session.status === "authenticated") {
-    return (
-      <Layout>
-        {/* <SuccessMessage message={"You are logged in"} /> */}
-        <Button onClick={handleLogout} title={"Sign out!"} />
-      </Layout>
-    );
+    return <Layout></Layout>;
   } else {
     return (
       <Layout>

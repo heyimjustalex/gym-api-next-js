@@ -9,11 +9,13 @@ import useHttp from "@/hooks/use-http";
 import LoadingRing from "@/components/ui/LoadingRing";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import SuccessMessage from "@/components/ui/SuccessMessage";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage(props) {
   const session = useSession();
   const token = session.data?.token ?? null;
-
+  const router = useRouter();
   const {
     sendRequest: sendAddTrainerReq,
     status: statusTrainerReq,
@@ -24,6 +26,18 @@ export default function DashboardPage(props) {
   async function onSubmitTrainer(formData) {
     await sendAddTrainerReq(formData, token);
   }
+  const [showLoading, setShowLoading] = useState(false);
+  useEffect(() => {
+    let timeout;
+    if (session.status === "unauthenticated") {
+      setShowLoading(true);
+      timeout = setTimeout(() => {
+        setShowLoading(false);
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [session.status]);
 
   if (session.status == "authenticated") {
     const role = session.data?.role;
@@ -51,11 +65,17 @@ export default function DashboardPage(props) {
           <h1 style={{ textAlign: "center" }}>this dashboard is not ready</h1>
         </Layout>
       );
+    } else if (role == "Client") {
+      // has to be wrapped, otherwise there is some warning
+      useEffect(() => {
+        router.replace("/workouts");
+      }, []);
     }
   } else if (session.status === "unauthenticated") {
     return (
       <Layout>
-        <ErrorMessage message={"Log in first!"} />
+        {showLoading && <LoadingRing />}
+        {!showLoading && <ErrorMessage message={"Log in first!"} />}
       </Layout>
     );
   } else {
