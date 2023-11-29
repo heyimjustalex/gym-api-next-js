@@ -3,8 +3,11 @@
 import React, { useRef } from "react";
 import styles from "./Form.module.css";
 import Button from "../ui/Button";
+import {useSession} from "next-auth/react";
 
 const CreateClientForm = (props) => {
+
+  const session = useSession();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -19,7 +22,7 @@ const CreateClientForm = (props) => {
       lastName: lastNameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
-      personalTrainerId: 0,
+      personalTrainerId: session.data?.userId,
       accountType: "Client",
     };
 
