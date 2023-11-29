@@ -5,8 +5,8 @@ import SuccessMessage from "@/components/ui/SuccessMessage";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Layout from "@/components/ui/Layout";
 import useHttp from "@/hooks/use-http";
-import {useSession} from "next-auth/react";
-import {addExercise} from "@/lib/api";
+import { useSession } from "next-auth/react";
+import { addExercise } from "@/lib/api";
 import CreateExerciseForm from "@/components/forms/CreateExerciseForm";
 
 export default function ExerciseAddPage() {
@@ -30,11 +30,9 @@ export default function ExerciseAddPage() {
       <br /> <br />
       <CreateExerciseForm onSubmit={onSubmitExercise} />
       {statusExerciseReq === "pending" && <LoadingRing />}
-
       {statusExerciseReq === "completed" && !errorExerciseReq && (
-        <SuccessMessage message={"User added!"} />
+        <SuccessMessage message={"Exercise added!"} />
       )}
-
       {statusExerciseReq === "completed" && errorExerciseReq && (
         <ErrorMessage message={errorExerciseReq} />
       )}

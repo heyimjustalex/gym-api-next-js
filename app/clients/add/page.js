@@ -30,11 +30,9 @@ export default function ClientAddPage() {
       <br /> <br />
       <CreateClientForm onSubmit={onSubmitUser} />
       {statusUserReq === "pending" && <LoadingRing />}
-
       {statusUserReq === "completed" && !errorUserReq && (
-        <SuccessMessage message={"User added!"} />
+        <SuccessMessage message={"Client added!"} />
       )}
-
       {statusUserReq === "completed" && errorUserReq && (
         <ErrorMessage message={errorUserReq} />
       )}
