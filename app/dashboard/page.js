@@ -19,8 +19,8 @@ export default function DashboardPage(props) {
   const {
     sendRequest: sendAddTrainerReq,
     status: statusTrainerReq,
-    errorTrainerReq,
-    dataTrainerReq,
+    error: errorTrainerReq,
+    data: dataTrainerReq,
   } = useHttp(addTrainer);
 
   async function onSubmitTrainer(formData) {
@@ -51,10 +51,10 @@ export default function DashboardPage(props) {
             <TrainerForm onSubmit={onSubmitTrainer} />
           )}
           {statusTrainerReq == "pending" && <LoadingRing />}
-          {statusTrainerReq == "completed" && !errorTrainerReq && (
+          {statusTrainerReq == "completed" && !errorTrainerReq.error && (
             <SuccessMessage message={"Trainer added!"} />
           )}
-          {statusTrainerReq == "completed" && errorTrainerReq && (
+          {statusTrainerReq == "completed" && errorTrainerReq.error && (
             <ErrorMessage message={errorTrainerReq} />
           )}
         </Layout>
