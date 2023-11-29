@@ -3,10 +3,9 @@
 import React, { useRef } from "react";
 import styles from "./Form.module.css";
 import Button from "../ui/Button";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const CreateWorkoutForm = (props) => {
-
   const session = useSession();
   const workoutNameRef = useRef();
   const workoutDescriptionRef = useRef();
@@ -33,12 +32,22 @@ const CreateWorkoutForm = (props) => {
           repetitions: exerciseRepetitionRef.current.value,
           time: exerciseTimeRef.current.value,
           workoutProgramId: 0,
-          personalTrainerId: session.data?.userId
-        }
+          personalTrainerId: session.data?.userId,
+        },
       ],
       personalTrainerId: session.data?.userId,
-      clientId: clientIdRef.current.value
+      clientId: clientIdRef.current.value,
     };
+
+    if (
+      !exerciseNameRef.current.value ||
+      !exerciseDescriptionRef.current.value ||
+      !exerciseSetsRef.current.value ||
+      !exerciseRepetitionRef.current.value ||
+      !exerciseTimeRef.current.value
+    ) {
+      formData.exercises = [];
+    }
 
     props.onSubmit(formData);
 
@@ -75,6 +84,21 @@ const CreateWorkoutForm = (props) => {
           ref={workoutDescriptionRef}
         />
       </label>
+      <br />
+
+      <label className={styles.label}>
+        Client id:
+        <input
+          className={styles.input}
+          type="text"
+          name="clientId"
+          placeholder="5"
+          ref={clientIdRef}
+        />
+      </label>
+      <br />
+      <br />
+      <h4>Exercise parameters (optional)</h4>
       <br />
       <label className={styles.label}>
         Exercise name:
@@ -130,17 +154,7 @@ const CreateWorkoutForm = (props) => {
           ref={exerciseTimeRef}
         />
       </label>
-      <br />
-      <label className={styles.label}>
-        Client id:
-        <input
-          className={styles.input}
-          type="text"
-          name="clientId"
-          placeholder="5"
-          ref={clientIdRef}
-        />
-      </label>
+
       <br />
       <br />
       <Button title="Add new workout"></Button>
