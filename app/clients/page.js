@@ -5,6 +5,12 @@ import { getClients } from "@/lib/api";
 import { cookies } from "next/headers";
 
 export default async function clientsPage() {
+  if (typeof window !== "undefined") {
+    console.log("Client side ClientPage");
+  } else {
+    console.log("Server side ClientPage");
+  }
+
   const token = cookies().get("token")?.value;
   const role = cookies().get("role")?.value;
   if (token) {

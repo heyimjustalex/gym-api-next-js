@@ -16,6 +16,12 @@ const getMotivationalQuote = async () => {
 };
 
 export default async function HomePage() {
+  if (typeof window !== "undefined") {
+    console.log("Client side HomePage");
+  } else {
+    console.log("Server side HomePage");
+  }
+
   const response = await getMotivationalQuote();
 
   let outputQuote = "Tall oaks grow from little acorns.";

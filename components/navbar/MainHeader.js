@@ -11,7 +11,6 @@ export default function MainHeader() {
     console.log("Client side Navbar");
   } else {
     console.log("Server side navbar");
-    console.log("ROLE", role);
   }
 
   return (

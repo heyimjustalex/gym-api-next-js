@@ -9,7 +9,6 @@ export default function WorkoutItemDetails(props) {
     exercises,
   } = props.workout;
 
-  console.log("EXCERCIES", exercises);
   return (
     <div className={styles.container} onClick={props.onClick}>
       <h2>Workout ID: {workoutProgramId}</h2>
