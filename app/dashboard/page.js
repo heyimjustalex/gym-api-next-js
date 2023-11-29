@@ -45,7 +45,7 @@ export default function DashboardPage(props) {
     if (role == "Manager") {
       return (
         <Layout>
-          <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>;
+          <h1 style={{ textAlign: "center" }}> {role} Dashboard</h1>
           <br /> <br />
           {statusTrainerReq !== "pending" && (
             <TrainerForm onSubmit={onSubmitTrainer} />
