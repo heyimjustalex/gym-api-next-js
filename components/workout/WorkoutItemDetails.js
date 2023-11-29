@@ -1,8 +1,13 @@
 import styles from "./WorkoutItemDetails.module.css";
 
 export default function WorkoutItemDetails(props) {
-  const { workoutProgramId, workoutName, description, time, exercises } =
-    props.workout;
+  const {
+    workoutProgramId,
+    name: workoutName,
+    description,
+    time,
+    exercises,
+  } = props.workout;
 
   console.log("EXCERCIES", exercises);
   return (
@@ -19,7 +24,7 @@ export default function WorkoutItemDetails(props) {
           <p className={styles.p}>Description: {exercise.description}</p>
           <p className={styles.p}>Sets: {exercise.sets}</p>
           <p className={styles.p}>Repetitions: {exercise.repetitions}</p>
-          <p className={styles.p}>Time: {time}</p>
+          <p className={styles.p}>Time: {exercise.time}</p>
         </div>
       ))}
     </div>
