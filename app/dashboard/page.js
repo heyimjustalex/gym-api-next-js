@@ -51,10 +51,10 @@ export default function DashboardPage(props) {
             <TrainerForm onSubmit={onSubmitTrainer} />
           )}
           {statusTrainerReq == "pending" && <LoadingRing />}
-          {statusTrainerReq == "completed" && !errorTrainerReq.error && (
+          {statusTrainerReq == "completed" && !errorTrainerReq && (
             <SuccessMessage message={"Trainer added!"} />
           )}
-          {statusTrainerReq == "completed" && errorTrainerReq.error && (
+          {statusTrainerReq == "completed" && errorTrainerReq && (
             <ErrorMessage message={errorTrainerReq} />
           )}
         </Layout>
