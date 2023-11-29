@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import styles from "./Form.module.css";
 import Button from "../ui/Button";
 
-const TrainerForm = (props) => {
+const CreateClientForm = (props) => {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -20,7 +20,7 @@ const TrainerForm = (props) => {
       email: emailRef.current.value,
       password: passwordRef.current.value,
       personalTrainerId: 0,
-      accountType: "PersonalTrainer",
+      accountType: "Client",
     };
 
     props.onSubmit(formData);
@@ -39,7 +39,7 @@ const TrainerForm = (props) => {
           className={styles.input}
           type="text"
           name="firstName"
-          placeholder="John"
+          placeholder="Bruce"
           ref={firstNameRef}
         />
       </label>
@@ -50,7 +50,7 @@ const TrainerForm = (props) => {
           className={styles.input}
           type="text"
           name="lastName"
-          placeholder="Doe"
+          placeholder="Lee"
           ref={lastNameRef}
         />
       </label>
@@ -61,7 +61,7 @@ const TrainerForm = (props) => {
           className={styles.input}
           type="email"
           name="email"
-          placeholder="email@email"
+          placeholder="email@email.dk"
           ref={emailRef}
         />
       </label>
@@ -78,9 +78,9 @@ const TrainerForm = (props) => {
       </label>
       <br />
       <br />
-      <Button title="Add new trainer"></Button>
+      <Button title="Add new client"></Button>
     </form>
   );
 };
 
-export default TrainerForm;
+export default CreateClientForm;
