@@ -7,7 +7,6 @@ base64 -i service_key.txt -d > ${HOME}/gcloud-service-key.json
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
-echo "source ./google-cloud-sdk/path.bash.inc"
-echo $HOME/.bashrc
+./google-cloud-sdk/bin/gcloud version
 
 
