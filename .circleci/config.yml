@@ -11,4 +11,10 @@ jobs:
       - image: cimg/node:21.6.1
     steps:
       - checkout
-      - run: node --version
+      - node/install-packages:
+        - pkg-manager: npm
+      - run:
+        - name: Build the project
+        - command: npm run build
+
+  
