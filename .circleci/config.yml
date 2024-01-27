@@ -48,7 +48,7 @@ jobs:
           at: ~/workspace
       - run:
           name: Add chmod
-          command: ls -la
+          command: chmod +x deployment.sh && chmod +x deployment2.sh
       - run:
           name: Execute Deployment Script
           command: cd ~/workspace
