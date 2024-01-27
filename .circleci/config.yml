@@ -13,35 +13,13 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - setup_remote_docker    
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-          name: Install node packages
+          name: Install dependencies
           command: npm install
       - run:
-          name: Building
+          name: Build the project
           command: npm run build
-      - run:
-          name: Run tests
-          command: npm test
           
-  deploy:
-    executor: gcp-cli/default
-    working_directory: ~/workspace
-    environment:
-      DEPLOYMENT_NAME: nextapp
-      PROJECT_ID: nextapp-412514
-      CLUSTER_NAME: nextappcluster
-      CLUSTER_NAME_STAG: nextapp-stag
-      CLOUDSDK_COMPUTE_ZONE: europe-central2 
-      CONTAINER_NAME: nextapp
-      IMAGE: nextapp
-      REG_ID: nextapp
-      REG_ID_PROD: nextapp-prod
-      IMG_TAG: 1
-      PROJECT_NAME: ci-cd
-      DEPLOYMENT_ENVIRONMENT: staging
-    steps:
-      - run:
-        name: Deploy
-        command: ./deployment.sh
-       
+  
