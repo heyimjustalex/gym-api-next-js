@@ -43,6 +43,7 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
+      - checkout
       - attach_workspace:
           at: ~/workspace
       - run:
