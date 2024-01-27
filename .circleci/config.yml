@@ -3,12 +3,14 @@ version: 2.1
 workflows:
   test-deploy:
     jobs:
-      - test
+      - build
+
+orbs:
+  node: cimg/node:21.6.1
   
 jobs:
-  test:
-    docker:
-      - image: cimg/node:21.6.1
+  build:
+    executor: node/default
     steps:
       - checkout
       - node/install-packages:
@@ -16,5 +18,8 @@ jobs:
       - run:
         - name: Build the project
         - command: npm run build
-
+      - persist_to_workspace:
+        - root: ~/project
+        - paths:
+          - .
   
