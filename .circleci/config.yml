@@ -43,4 +43,4 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
-      - run: bash pwd
+      - run: pwd
