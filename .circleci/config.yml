@@ -7,10 +7,24 @@ orbs:
 workflows:
   build-workflow:
     jobs:
-      - build
-  
+      - build  
 jobs:
   build:
+    executor: node/default
+    steps:
+      - checkout
+      - setup_remote_docker    
+      - run:
+          name: Install node packages
+          command: npm install
+      - run:
+          name: Building
+          command: npm run build
+      - run:
+          name: Run tests
+          command: npm test
+          
+  deploy:
     executor: gcp-cli/default
     working_directory: ~/workspace
     environment:
@@ -27,18 +41,7 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
-      - checkout
-      - setup_remote_docker    
       - run:
-          name: Install node packages
-          command: npm install
-      - run:
-          name: Building
-          command: npm run build
-      - run:
-          name: Run tests
-          command: npm test
-      - run:
-          name: Deploy
-          command: ./deployment.sh
+        name: Deploy
+        command: ./deployment.sh
        
