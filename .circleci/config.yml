@@ -48,4 +48,4 @@ jobs:
       - run:
           name: Execute Deployment Script
           command: cd ~/workspace
-      - run: ./deployment.sh
+      - run: ls
