@@ -23,7 +23,7 @@ jobs:
           name: Build the project
           command: npm run build
 
-deploy:
+  deploy:
     executor: gcp-cli/default
     working_directory: ~/workspace
     environment:
