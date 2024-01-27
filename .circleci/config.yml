@@ -47,6 +47,9 @@ jobs:
       - attach_workspace:
           at: ~/workspace
       - run:
+          name: Add chmod
+          command: chmod +x deployment.sh
+      - run:
           name: Execute Deployment Script
           command: cd ~/workspace
       - run: ./deployment.sh
