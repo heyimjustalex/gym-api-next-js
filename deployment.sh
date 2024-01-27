@@ -16,6 +16,6 @@ tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 docker build -t gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1 .
 ./google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
 kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
-echo "Successfully deployed to ${DEPLOYMENT_ENVIRONMENT}"
+echo "Successfully deplo yed to ${DEPLOYMENT_ENVIRONMENT}"
 
 
