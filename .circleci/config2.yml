@@ -1,0 +1,40 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: wecs/circle-ci-gcloud-node:0.1.0
+    working_directory: ~/workspace
+    environment:
+      DEPLOYMENT_NAME: nextapp
+      PROJECT_ID: nextapp-412514
+      CLUSTER_NAME: nextappcluster
+      CLUSTER_NAME_STAG: nextapp-stag
+      CLOUDSDK_COMPUTE_ZONE: europe-central2 
+      CONTAINER_NAME: nextapp
+      IMAGE: nextapp
+      REG_ID: nextapp
+      REG_ID_PROD: nextapp-prod
+      IMG_TAG: 1
+      PROJECT_NAME: ci-cd
+      DEPLOYMENT_ENVIRONMENT: staging
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install node packages
+          command: |
+            npm install
+      - run:
+          name: Building
+          command: npm run build
+      - run:
+          name: Run tests
+          command: npm test
+      - run:
+          name: Deploy
+          command: ./deployment.sh
+       
