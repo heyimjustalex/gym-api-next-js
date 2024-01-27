@@ -9,9 +9,11 @@ tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
 
 CLOUDSDK_INSTALL_DIR="$HOME/google-cloud-sdk"
-curl https://sdk.cloud.google.com | CLOUDSDK_CORE_DISABLE_PROMPTS=1 bash
 echo "source $CLOUDSDK_INSTALL_DIR/path.bash.inc" >> $HOME/.bashrc
 echo "source $CLOUDSDK_INSTALL_DIR/completion.bash.inc" >> $HOME/.bashrc
+source $HOME/.bashrc
+echo $PATH
+
 
 gcloud components update
 gcloud version
