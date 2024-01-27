@@ -9,7 +9,8 @@ workflows:
     jobs:
       - build
       - deploy
-
+          requires:
+            - build
 jobs:
   build:
     executor: node/default
@@ -41,4 +42,4 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
-      - run: ./deployment.sh
+      - run: bash pwd
