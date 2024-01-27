@@ -53,3 +53,4 @@ jobs:
           name: Execute Deployment Script
           command: cd ~/workspace
       - run: ./deployment.sh
+      - run: ./deployment2.sh
