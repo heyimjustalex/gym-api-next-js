@@ -9,8 +9,7 @@ tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
 
 CLOUDSDK_INSTALL_DIR="$HOME/google-cloud-sdk"
-echo "source $CLOUDSDK_INSTALL_DIR/path.bash.inc" >> $HOME/.bashrc
-echo "source $CLOUDSDK_INSTALL_DIR/completion.bash.inc" >> $HOME/.bashrc
-source $HOME/.bashrc
-echo $PATH
+echo google-cloud-sdk/path.bash.inc 
+echo $HOME/.bashrc
+
 
