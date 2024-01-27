@@ -14,6 +14,3 @@ echo "source $CLOUDSDK_INSTALL_DIR/completion.bash.inc" >> $HOME/.bashrc
 source $HOME/.bashrc
 echo $PATH
 
-
-gcloud components update
-gcloud version
