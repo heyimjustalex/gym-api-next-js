@@ -8,9 +8,10 @@ workflows:
   build-workflow:
     jobs:
       - build
-      - deploy
-        requires:
-          - build
+      - deploy:
+          requires:
+            - build
+
 jobs:
   build:
     executor: node/default
