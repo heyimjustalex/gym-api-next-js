@@ -43,4 +43,9 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
-      - run: pwd
+      - attach_workspace:
+          at: ~/workspace
+      - run:
+          name: Execute Deployment Script
+          command: cd ~/workspace
+      - run: ./deployment.sh
