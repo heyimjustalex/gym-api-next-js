@@ -3,12 +3,13 @@ version: 2.1
 orbs:
   node: circleci/node@5
   gcp-cli: circleci/gcp-cli@3.1.1
-  
+
 workflows:
   build-workflow:
     jobs:
-      - build  
+      - build
       - deploy
+
 jobs:
   build:
     executor: node/default
@@ -31,7 +32,7 @@ jobs:
       PROJECT_ID: nextapp-412514
       CLUSTER_NAME: nextappcluster
       CLUSTER_NAME_STAG: nextapp-stag
-      CLOUDSDK_COMPUTE_ZONE: europe-central2 
+      CLOUDSDK_COMPUTE_ZONE: europe-central2
       CONTAINER_NAME: nextapp
       IMAGE: nextapp
       REG_ID: nextapp
@@ -40,9 +41,4 @@ jobs:
       PROJECT_NAME: ci-cd
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
-      - run:
-        name: Deploy
-        command: ./deployment.sh
-       
-          
-  
+      - run: ./deployment.sh
