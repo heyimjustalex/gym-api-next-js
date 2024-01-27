@@ -1,8 +1,17 @@
 version: 2.1
+
+orbs:
+  node: circleci/node@5
+  gcp-cli: circleci/gcp-cli@3.1.1
+  
+workflows:
+  build-workflow:
+    jobs:
+      - build
+  
 jobs:
   build:
-    docker:
-      - image: wecs/circle-ci-gcloud-node:0.1.0
+    executor: gcp-cli/default
     working_directory: ~/workspace
     environment:
       DEPLOYMENT_NAME: nextapp
@@ -19,15 +28,10 @@ jobs:
       DEPLOYMENT_ENVIRONMENT: staging
     steps:
       - checkout
-      - setup_remote_docker
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+      - setup_remote_docker    
       - run:
           name: Install node packages
-          command: |
-            npm install
+          command: npm install
       - run:
           name: Building
           command: npm run build
