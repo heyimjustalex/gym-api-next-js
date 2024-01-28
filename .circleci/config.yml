@@ -27,7 +27,8 @@ jobs:
           command: npm run build
 
   deploy:
-    executor: gcp-cli/default
+    docker:
+      - image: cimg/base:stable
     working_directory: ~/workspace
     environment:
       DEPLOYMENT_NAME: nextapp
