@@ -7,9 +7,6 @@ base64 -i service_key.txt -d > ${HOME}/gcloud-service-key.json
 cat ${HOME}/gcloud-service-key.json
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
-export PATH="/path/to/your/google-cloud-sdk/bin:$PATH"
-
-
 ./google-cloud-sdk/install.sh
 echo 'export PATH="$HOME/google-cloud-sdk/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
