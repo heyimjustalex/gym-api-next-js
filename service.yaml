@@ -6,8 +6,10 @@ metadata:
     app: nextapp
 spec:
   ports:
-    - port: 80
-    - targetPort: 3000
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 3000
   selector:
     app: nextapp
     tier: frontend
