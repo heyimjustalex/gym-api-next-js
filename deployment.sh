@@ -15,16 +15,16 @@ source /home/circleci/workspace/google-cloud-sdk/path.bash.inc
 
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
-./google-cloud-sdk/bin/gcloud config set project $PROJECT_ID
-./google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
-./google-cloud-sdk/bin/gcloud  config set compute/zone $CLOUDSDK_COMPUTE_ZONE
-./google-cloud-sdk/bin/gcloud  --quiet container clusters get-credentials $CLUSTER_NAME
-./google-cloud-sdk/bin/gcloud components install kubectl
-./google-cloud-sdk/bin/gcloud components install gke-gcloud-auth-plugin
-./google-cloud-sdk/bin/gcloud components list
+gcloud config set project $PROJECT_ID
+gcloud --quiet config set container/cluster $CLUSTER_NAME
+gcloud  config set compute/zone $CLOUDSDK_COMPUTE_ZONE
+gcloud  --quiet container clusters get-credentials $CLUSTER_NAME
+gcloud components install kubectl
+gcloud components install gke-gcloud-auth-plugin
+gcloud components list
 docker build -t gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1 .
-./google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
-./google-cloud-sdk/bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
-echo "Success fully de ployed to ${DEPLOYMENT_ENVIRONMENT}"
+gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
+bin/kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
+echo "Success fully deployed to ${DEPLOYMENT_ENVIRONMENT}"
 
 
