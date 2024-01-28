@@ -41,7 +41,7 @@ export default async function HomePage() {
           <>
             <br />
             <br />
-            <h2>Motivational quote for today:</h2>
+            <h2>ALALALALLALALL Motivational quote for today:</h2>
             <br />
             <h3>
               <i>{'"' + outputQuote + '"'}</i>
