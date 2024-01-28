@@ -35,7 +35,7 @@ jobs:
       PROJECT_ID: nextapp-412514
       CLUSTER_NAME: nextappcluster
       CLUSTER_NAME_STAG: nextapp-stag
-      CLOUDSDK_COMPUTE_ZONE: europe-central2-a
+      CLOUDSDK_COMPUTE_ZONE: europe-central2
       CONTAINER_NAME: nextapp
       IMAGE: nextapp
       REG_ID: nextapp
