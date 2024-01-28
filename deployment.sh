@@ -8,7 +8,9 @@ cat ${HOME}/gcloud-service-key.json
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
-echo 'source "$HOME/google-cloud-sdk/path.bash.inc"' >> ~/.bashrc && source ~/.bashrc
+source '$HOME/google-cloud-sdk/path.bash.inc'
+source '$HOME//google-cloud-sdk/completion.bash.inc'
+
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
 ./google-cloud-sdk/bin/gcloud config set project $PROJECT_ID
