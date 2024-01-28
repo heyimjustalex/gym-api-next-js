@@ -13,6 +13,8 @@ tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/bin/gcloud --quiet config set container/cluster $CLUSTER_NAME
 ./google-cloud-sdk/bin/gcloud  config set compute/zone $CLOUDSDK_COMPUTE_ZONE
 ./google-cloud-sdk/bin/gcloud  --quiet container clusters get-credentials $CLUSTER_NAME
+./google-cloud-sdk/bin/gcloud compute zones list
+./google-cloud-sdk/bin/gcloud components install kubectl
 docker build -t gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1 .
 ./google-cloud-sdk/bin/gcloud docker -- push gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
 kubectl set image deployment/${DEPLOYMENT_NAME} ${CONTAINER_NAME}=gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1
