@@ -8,8 +8,10 @@ cat ${HOME}/gcloud-service-key.json
 curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 tar -xf google-cloud-cli-461.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
-echo "source /home/circleci/workspace/google-cloud-sdk/completion.bash.inc" >> ~/.bashrc && source ~/.bashrc
-echo "source /home/circleci/workspace/google-cloud-sdk/path.bash.inc" >> ~/.bashrc && source ~/.bashrc
+cat /home/circleci/workspace/google-cloud-sdk/completion.bash.inc
+source /home/circleci/workspace/google-cloud-sdk/completion.bash.inc
+source /home/circleci/workspace/google-cloud-sdk/path.bash.inc
+
 
 gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
 
