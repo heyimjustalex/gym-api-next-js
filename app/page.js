@@ -36,7 +36,7 @@ export default async function HomePage() {
   return (
     <Layout>
       <section className={styles.headingMd}>
-        <h1>Gym Web App</h1>
+        <h1>Hire me!</h1>
         {outputAuthor !== "" && outputQuote !== "" && (
           <>
             <br />
